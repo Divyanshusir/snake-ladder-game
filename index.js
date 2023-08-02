@@ -71,10 +71,12 @@ function handleClick() {
     if (position[turn] + num == 100) {
         winSound.play()
         const winner = color[turn]
+        handleReset();
         setTimeout(() => {
             alert(` ${winner} wins`);
-            handleReset();
         }, 100);
+        
+        return
     }
     else if (position[turn] + num < 100) {
         position[turn] += num
@@ -96,6 +98,7 @@ function handleClick() {
 
 
 function handleReset() {
+    turn = 0
     resetSound.load();
     resetSound.play();
     // console.log(numOfPlayers)
@@ -152,9 +155,11 @@ function startHandler(){
     resetSound.play();
     const nop = document.getElementById('numofplayers')
     numOfPlayers = nop.value 
+    
     for (let i = 0; i < numOfPlayers; i++) {
         position.push(1);
     }
+
     const dicebox  =  document.getElementById('dice-box')
     dicebox.className = 'dice-box'
 
